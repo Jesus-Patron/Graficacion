@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container {
+  background-color: rgb(0, 7, 48);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-container {
+  margin-right: 20px; /* Aumentamos el margen a la derecha del contenedor del canvas */
+}
+
+canvas {
+  background-color: #fff;
+  width: 800px; /* Ajustamos el ancho del canvas */
+  height: 600px; /* Ajustamos la altura del canvas */
+  border: 2px solid #000; /* Agregamos un borde alrededor del canvas */
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+}
+
+button, input, label {
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #4CAF50; /* Cambiamos el color de fondo del botón */
+  color: white; /* Cambiamos el color del texto del botón a blanco */
+  border: none; /* Quitamos el borde del botón */
+  padding: 10px 20px; /* Ajustamos el relleno del botón */
+  text-align: center; /* Centramos el texto del botón */
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049; /* Cambiamos el color de fondo del botón al pasar el ratón por encima */
+}
