@@ -10,11 +10,11 @@
   <div class="main-container">
     <div class="controls-container">
       <button id="draw-button">Dibujar</button>
-      <button id="draw-line-pendient-button">Dibujar linea (y=mx+b)</button>
-      <!-- <button id="draw-line-bresenham-button">Dibujar linea (Bresenham)</button>
-      <button id="draw-line-dda-button">Dibujar linea (DDA)</button>
-      <button id="draw-square-pendient-button">Dibujar cuadrado (y=mx+b)</button>
-      <button id="draw-circle-button">Dibujar circulo</button> -->
+      <button onclick="lineametodobasico()">Linea (Metodo basico)</button>
+      <button onclick="lineabresenham()">Linea (Bresenham)</button>
+      <button onclick="lineaDDA()">Linea (DDA)</button>
+      <button onclick="cuadrado()">Cuadrado</button>
+      <button onclick="circulo()">Circulo</button>
       <button id="erase-button">Borrar</button>
       <label for="line-width">Grosor de línea:</label>
       <input type="range" id="line-width" min="1" max="10" value="5">
