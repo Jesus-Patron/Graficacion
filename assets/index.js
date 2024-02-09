@@ -21,6 +21,7 @@ let posicion = mainCanvas.getBoundingClientRect();
 correccionX = posicion.x;
 correccionY = posicion.y;
 
+//Dibujo normal
 function dibujar(cursorX, cursorY) {
   context.beginPath();
   context.moveTo(initialX, initialY);
@@ -34,92 +35,6 @@ function dibujar(cursorX, cursorY) {
   initialX = cursorX;
   initialY = cursorY;
 }
-
-const cambiarHerramienta = (evt) => {
-  isDrawing = !isDrawing;
-  isErasing = false;
-  mainCanvas.style.cursor = isDrawing ? "crosshair" : "default";
-};
-
-const cambiarBorrador = () => {
-  isErasing = !isErasing;
-  isDrawing = false;
-  mainCanvas.style.cursor = isErasing ? "url('eraser.png'), auto" : "crosshair";
-};
-
-const actualizarAnchoLinea = (valor) => {
-  lineWidth = valor;
-};
-
-const actualizarColor = (color) => {
-  strokeColor = color;
-};
-
-const mouseDown = (evt) => {
-  evt.preventDefault();
-  if (evt.changedTouches === undefined) {
-    initialX = evt.offsetX;
-    initialY = evt.offsetY;
-  } else {
-    initialX = evt.changedTouches[0].pageX - correccionX;
-    initialY = evt.changedTouches[0].pageY - correccionY;
-  }
-
-  if (isDrawing || isErasing) {
-    dibujar(initialX, initialY);
-    mainCanvas.addEventListener("mousemove", mouseMoving);
-    mainCanvas.addEventListener("touchmove", mouseMoving);
-  }
-};
-
-const mouseMoving = (evt) => {
-  evt.preventDefault();
-  if (evt.changedTouches === undefined) {
-    dibujar(evt.offsetX, evt.offsetY);
-  } else {
-    dibujar(evt.changedTouches[0].pageX - correccionX, evt.changedTouches[0].pageY - correccionY);
-  }
-};
-
-const mouseUp = () => {
-  mainCanvas.removeEventListener("mousemove", mouseMoving);
-  mainCanvas.removeEventListener("touchmove", mouseMoving);
-};
-
-mainCanvas.addEventListener("mousedown", mouseDown);
-mainCanvas.addEventListener("mouseup", mouseUp);
-
-// Pantallas táctiles
-mainCanvas.addEventListener("touchstart", mouseDown);
-mainCanvas.addEventListener("touchend", mouseUp);
-
-mainCanvas.addEventListener('mousedown', (event) => {
-  if (!activometobasico && !activobresenham && !activoDDA && !activocuadrado && !circulo) return;
-  isDrawing = true;
-  startX = event.offsetX;
-  startY = event.offsetY;
-});
-mainCanvas.addEventListener('mousemove', (event) => {
-  //if (!activometobasico || !isDrawing) return;
-  //if (!isDrawing) return;
-  endX = event.offsetX;
-  endY = event.offsetY;
-});
-mainCanvas.addEventListener('mouseup', () => {
-  if (!isDrawing) return;
-  isDrawing = false;// Se desactiva la bandera de dibujo al soltar el botón del mouse
-  if (activometobasico) {
-    drawLinemetbasico(startX, startY, endX, endY);
-  } else if (activobresenham) {
-    drawLineBresenham(startX, startY, endX, endY);
-  }else if (activoDDA) {
-    drawLineDDA(startX, startY, endX, endY);
-  }else if (activocuadrado) {
-    drawcuadrado(startX, startY, endX, endY);
-  }else if (activocirculo) {
-    drawcirculo(startX, startY, endX, endY);
-  }
-});
 
 //Algoritmo de pendiente ordenado al origen
 function drawLinemetbasico(x1, y1, x2, y2) {
@@ -237,9 +152,177 @@ function drawcirculo(x1, x2, y1, y2){
  context.stroke();
 }
 
+const cambiarHerramienta = (evt) => {
+  isDrawing = !isDrawing;
+  activometobasico = false;
+  activobresenham = false;
+  activocuadrado = false;
+  activoDDA = false;
+  activocirculo = false;
+  isErasing = false;
+  mainCanvas.style.cursor = isDrawing ? "crosshair" : "default";
+};
+
+const cambiarMetodoBasico = (evt) => {
+  isDrawing = false;
+  activometobasico = !activometobasico;
+  activobresenham = false;
+  activocuadrado = false;
+  activoDDA = false;
+  activocirculo = false;
+  isErasing = false;
+  mainCanvas.style.cursor = activometobasico ? "crosshair" : "default";
+};
+
+const cambiarBresenham = (evt) => {
+  isDrawing = false;
+  activometobasico = false;
+  activobresenham = !activobresenham;
+  activocuadrado = false;
+  activoDDA = false;
+  activocirculo = false;
+  isErasing = false;
+  mainCanvas.style.cursor = activobresenham ? "crosshair" : "default";
+};
+
+const cambiarCuadrado = (evt) => {
+  isDrawing = false;
+  activometobasico = false;
+  activobresenham = false;
+  activocuadrado = !activocuadrado;
+  activoDDA = false;
+  activocirculo = false;
+  isErasing = false;
+  mainCanvas.style.cursor = activocuadrado ? "crosshair" : "default";
+};
+
+const cambiarDDA = (evt) => {
+  isDrawing = false;
+  activometobasico = false;
+  activobresenham = false;
+  activocuadrado = false;
+  activoDDA = !activoDDA;
+  activocirculo = false;
+  isErasing = false;
+  mainCanvas.style.cursor = activoDDA ? "crosshair" : "default";
+};
+
+const cambiarCirculo = (evt) => {
+  isDrawing = false;
+  activometobasico = false;
+  activobresenham = false;
+  activocuadrado = false;
+  activoDDA = false;
+  activocirculo = !activocirculo;
+  isErasing = false;
+  mainCanvas.style.cursor = isDrawing ? "crosshair" : "default";
+};
+
+const cambiarBorrador = () => {
+  isDrawing = false;
+  activometobasico = false;
+  activobresenham = false;
+  activocuadrado = false;
+  activoDDA = false;
+  activocirculo = false;
+  isErasing = !isErasing;
+  mainCanvas.style.cursor = isErasing ? "url('eraser.png'), auto" : "crosshair";
+};
+
+const actualizarAnchoLinea = (valor) => {
+  lineWidth = valor;
+};
+
+const actualizarColor = (color) => {
+  strokeColor = color;
+};
+
+const mouseDown = (evt) => {
+  evt.preventDefault();
+  if (evt.changedTouches === undefined) {
+    initialX = evt.offsetX;
+    initialY = evt.offsetY;
+  } else {
+    initialX = evt.changedTouches[0].pageX - correccionX;
+    initialY = evt.changedTouches[0].pageY - correccionY;
+  }
+
+  if (isDrawing || isErasing || activometobasico || activobresenham || activocuadrado || activoDDA || activocirculo) {
+    dibujar(initialX, initialY);
+    mainCanvas.addEventListener("mousemove", mouseMoving);
+    mainCanvas.addEventListener("touchmove", mouseMoving);
+  }
+};
+
+const mouseMoving = (evt) => {
+  evt.preventDefault();
+  if (evt.changedTouches === undefined) {
+    dibujar(evt.offsetX, evt.offsetY);
+  } else {
+    dibujar(evt.changedTouches[0].pageX - correccionX, evt.changedTouches[0].pageY - correccionY);
+  }
+};
+
+const mouseUp = () => {
+  mainCanvas.removeEventListener("mousemove", mouseMoving);
+  mainCanvas.removeEventListener("touchmove", mouseMoving);
+};
+
+mainCanvas.addEventListener("mousedown", mouseDown);
+mainCanvas.addEventListener("mouseup", mouseUp);
+
+// Pantallas táctiles
+mainCanvas.addEventListener("touchstart", mouseDown);
+mainCanvas.addEventListener("touchend", mouseUp);
+
+mainCanvas.addEventListener('mousedown', (event) => {
+  if (!activometobasico && !activobresenham && !activoDDA && !activocuadrado && !activoCirculo) return;
+  isDrawing = true;
+  startX = event.offsetX;
+  startY = event.offsetY;
+});
+
+mainCanvas.addEventListener('mousemove', (event) => {
+  //if (!activometobasico || !isDrawing) return;
+  //if (!isDrawing) return;
+  endX = event.offsetX;
+  endY = event.offsetY;
+});
+
+mainCanvas.addEventListener('mouseup', () => {
+  if (!isDrawing) return;
+  isDrawing = false;// Se desactiva la bandera de dibujo al soltar el botón del mouse
+  if (activometobasico) {
+    drawLinemetbasico(startX, startY, endX, endY);
+  } else if (activobresenham) {
+    drawLineBresenham(startX, startY, endX, endY);
+  }else if (activoDDA) {
+    drawLineDDA(startX, startY, endX, endY);
+  }else if (activocuadrado) {
+    drawcuadrado(startX, startY, endX, endY);
+  }else if (activocirculo) {
+    drawcirculo(startX, startY, endX, endY);
+  }
+});
+
 // Agregar opciones de dibujo y borrado
 const drawButton = document.getElementById("draw-button");
 drawButton.addEventListener("click", cambiarHerramienta);
+
+const basicoButton = document.getElementById("basico-button");
+basicoButton.addEventListener("click", cambiarMetodoBasico);
+
+const bresenhamButton = document.getElementById("bresenham-button");
+bresenhamButton.addEventListener("click", cambiarBresenham);
+
+const ddaButton = document.getElementById("dda-button");
+ddaButton.addEventListener("click", cambiarDDA);
+
+const cuadradoButton = document.getElementById("cuadrado-button");
+cuadradoButton.addEventListener("click", cambiarCuadrado);
+
+const circuloButton = document.getElementById("circulo-button");
+circuloButton.addEventListener("click", cambiarCirculo);
 
 const eraseButton = document.getElementById("erase-button");
 eraseButton.addEventListener("click", cambiarBorrador);
@@ -249,43 +332,3 @@ lineWidthInput.addEventListener("input", (e) => actualizarAnchoLinea(e.target.va
 
 const colorPicker = document.getElementById("color-picker");
 colorPicker.addEventListener("input", (e) => actualizarColor(e.target.value));
-
-function lineametodobasico() {
-  activometobasico = true;
-  activobresenham = false
-  activocuadrado = false;
-  activoDDA = false;
-  activocirculo = false;
-}
-
-function lineabresenham(){
-  activobresenham = true;
-  activometobasico = false;
-  activocuadrado = false;
-  activoDDA = false;
-  activocirculo = false;
-}
-
-function lineaDDA() {
-  activoDDA = true;
-  activometobasico = false;
-  activobresenham = false;
-  activocuadrado = false;
-  activocirculo = false;
-}
-
-function cuadrado(){
-  activocuadrado = true;
-  activometobasico = false;
-  activobresenham = false;
-  activoDDA = false;
-  activocirculo = false;
-}
-
-function circulo(){
-  activocirculo = true;
-  activocuadrado = false;
-  activometobasico = false;
-  activobresenham = false;
-  activoDDA = false;
-}
