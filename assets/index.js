@@ -160,6 +160,7 @@ const cambiarHerramienta = (evt) => {
   activoDDA = false;
   activocirculo = false;
   isErasing = false;
+  startX = startY = endX = endY = undefined; // Reinicia las variables
   mainCanvas.style.cursor = isDrawing ? "crosshair" : "default";
 };
 
@@ -171,6 +172,7 @@ const cambiarMetodoBasico = (evt) => {
   activoDDA = false;
   activocirculo = false;
   isErasing = false;
+  startX = startY = endX = endY = undefined; // Reinicia las variables
   mainCanvas.style.cursor = activometobasico ? "crosshair" : "default";
 };
 
@@ -182,6 +184,7 @@ const cambiarBresenham = (evt) => {
   activoDDA = false;
   activocirculo = false;
   isErasing = false;
+  startX = startY = endX = endY = undefined; // Reinicia las variables
   mainCanvas.style.cursor = activobresenham ? "crosshair" : "default";
 };
 
@@ -193,6 +196,7 @@ const cambiarCuadrado = (evt) => {
   activoDDA = false;
   activocirculo = false;
   isErasing = false;
+  startX = startY = endX = endY = undefined; // Reinicia las variables
   mainCanvas.style.cursor = activocuadrado ? "crosshair" : "default";
 };
 
@@ -204,6 +208,7 @@ const cambiarDDA = (evt) => {
   activoDDA = !activoDDA;
   activocirculo = false;
   isErasing = false;
+  startX = startY = endX = endY = undefined; // Reinicia las variables
   mainCanvas.style.cursor = activoDDA ? "crosshair" : "default";
 };
 
@@ -215,6 +220,7 @@ const cambiarCirculo = (evt) => {
   activoDDA = false;
   activocirculo = !activocirculo;
   isErasing = false;
+  startX = startY = endX = endY = undefined; // Reinicia las variables
   mainCanvas.style.cursor = isDrawing ? "crosshair" : "default";
 };
 
@@ -276,7 +282,7 @@ mainCanvas.addEventListener("touchstart", mouseDown);
 mainCanvas.addEventListener("touchend", mouseUp);
 
 mainCanvas.addEventListener('mousedown', (event) => {
-  if (!activometobasico && !activobresenham && !activoDDA && !activocuadrado && !activoCirculo) return;
+  if (!activometobasico && !activobresenham && !activoDDA && !activocuadrado && !activocirculo) return; // Si ninguna herramienta de dibujo está seleccionada, no se activa el modo de dibujo
   isDrawing = true;
   startX = event.offsetX;
   startY = event.offsetY;
@@ -290,20 +296,20 @@ mainCanvas.addEventListener('mousemove', (event) => {
 });
 
 mainCanvas.addEventListener('mouseup', () => {
-  if (!isDrawing) return;
-  isDrawing = false;// Se desactiva la bandera de dibujo al soltar el botón del mouse
+  isDrawing = false; // Se desactiva la bandera de dibujo al soltar el botón del mouse
   if (activometobasico) {
     drawLinemetbasico(startX, startY, endX, endY);
   } else if (activobresenham) {
     drawLineBresenham(startX, startY, endX, endY);
-  }else if (activoDDA) {
+  } else if (activoDDA) {
     drawLineDDA(startX, startY, endX, endY);
-  }else if (activocuadrado) {
+  } else if (activocuadrado) {
     drawcuadrado(startX, startY, endX, endY);
-  }else if (activocirculo) {
+  } else if (activocirculo) {
     drawcirculo(startX, startY, endX, endY);
   }
 });
+
 
 // Agregar opciones de dibujo y borrado
 const drawButton = document.getElementById("draw-button");
