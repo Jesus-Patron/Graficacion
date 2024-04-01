@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/styles.css">
+  <title>Tu Página</title>
+</head>
+<body>
+  <div class="main-container">
+    <div class="controls-container">
+      <button id="draw-button">Dibujar</button>
+      <button id="basico-button">Linea (Metodo basico)</button>
+      <button id="bresenham-button">Linea (Bresenham)</button>
+      <button id="dda-button">Linea (DDA)</button>
+      <button id="cuadrado-button">Cuadrado</button>
+      <button id="circulo-button">Circulo</button>
+      <button id="erase-button">Borrar</button>
+    </div>
+    <div class="controls-container">
+      <label for="line-width">Grosor de línea:</label>
+      <input type="range" id="line-width" min="1" max="10" value="5">
+      <label for="color-picker">Color de línea:</label>
+      <input type="color" id="color-picker" value="#000000">
+    </div>
+    <div class="canvas-container">
+      <canvas id="main-canvas" width="1100" height="530"></canvas>
+    </div>
+  </div>
+  <script src="assets/index.js"></script>
+</body>
+</html>
