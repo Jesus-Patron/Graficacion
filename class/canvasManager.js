@@ -1,10 +1,10 @@
-import { Figura } from "./figuras.js";
-import { Linea } from "./linea.js";
-import { Cuadrado } from "./cuadrado.js";
-import { Circulo } from "./circulo.js";
-import { Poligonos } from "./poligonos.js";  
-import { Elipse } from "./elipse.js";
-import { HistoryManager } from "./historyManager.js";
+import {Figura} from "../class/figuras.js";
+import {Linea} from "../class/linea.js";
+import {Cuadrado} from "../class/cuadrado.js";
+import {Circulo} from "../class/circulo.js";
+import {Poligonos} from "../class/poligonos.js";   
+import {Elipse} from "../class/elipse.js";
+import {HistoryManager} from "../class/historyManager.js"
 import { Trapecio } from "./trapecio.js";
 import { Rectangulo } from "./rectangulo.js";
 import { Texto } from "./texto.js";

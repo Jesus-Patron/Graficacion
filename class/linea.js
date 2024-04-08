@@ -1,5 +1,5 @@
 // Clase para las líneas
-import { Figura } from "./figuras";
+import { Figura } from "./figuras.js";
 
 class Linea extends Figura{
 

@@ -1,4 +1,4 @@
-import { CanvasManager } from "./clases/canvasManager";
+import { CanvasManager } from "./class/canvasManager.js";
 
 var startPoint;
 var endPoint;

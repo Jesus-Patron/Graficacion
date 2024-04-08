@@ -1,5 +1,5 @@
-import { Linea } from "./linea.js";
-import { Figura } from "./figuras.js";
+import { Linea } from './linea.js';
+import { Figura } from "../class/figuras.js";
 
 class Trapecio extends Figura {
     constructor(ctx, color, grosor, start, end, lados) {

@@ -1,4 +1,4 @@
-import { Figura } from "./figuras";
+import { Figura } from './figuras.js';
 
 class Cuadrado extends Figura {
     constructor(ctx, color, grosor, start, end) {

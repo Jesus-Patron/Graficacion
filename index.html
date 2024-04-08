@@ -2,102 +2,124 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Paint++</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <title>Proyecto Paint Graficacion</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <div class="undoRedo">
+                <button id="undo">Undo</button>
+                <button id="redo">Redo</button>
+                <p class="coordenadas" id="coordenadas"></p>
+            </div>
         </div>  
 
         <div class="toolbox">
-            <div class="tool">
-                <img id="open" src="imagenes/abrir.png" alt="Abrir un Dibujo">
-            </div>
-            <div class="tool">
-                <img id="save" src="imagenes/guardar.png" alt="Guardar el dibujo">
-            </div>
-            <div class="tool">
-                <img id="export" src="imagenes/exportar.png" alt="Exportar el Dibujo">
-            </div>
-            <div class="tool">
-                <img id="pencil" src="imagenes/lapiz.png" alt="Lapicito">
-            </div>
 
             <div class="tool">
-                <img id="eraser" src="img/eraser.png" alt="Goma">
+                <img id="cursor" src="imagenes/click.png" alt="Cursor">
+            </div>
+            
+            <!--Funciones de archivo-->
+            <div class="content">
+                <div class="tool">
+                    <img id="open" src="imagenes/abrir.png" alt="Abrir un Dibujo">
+                </div>
+                <div class="tool">
+                    <img id="save" src="imagenes/guardar.png" alt="Guardar el dibujo">
+                </div>
+                <div class="tool">
+                    <img id="export" src="imagenes/exportar.png" alt="Exportar el Dibujo">
+                </div>
+            </div>
+            
+            <!--Borrar todo-->
+            <div class="content">
+                <div class="tool">
+                    <img id="eraser" src="imagenes/reiniciar.png" alt="Borrar todo">
+                </div>
             </div>
 
-            <div class="tool">
-                <img id="pixelEraser" src="imagenes/borrador-pixel.png" alt="Goma">
-            </div>
-            <div class="tool">
-                <img id="figureEraser" src="imagenes/borrar-figura.png" alt="Borrar Figura">
-            </div>
-            <div class="tool">
-                <img id="bucket" src="imagenes/rellenar.png" alt="Cubo de Pintura">
-            </div>
-            <div class="tool">
-                <img id="text" src="imagenes/texto.png" alt="Texto">
-            </div>
-            <div class="tool">
-                <img id="square" src="imagenes/cuadrado.png" alt="Cuadrado">
-            </div>
-            <div class="tool">
-                <img id="rectangle" src="imagenes/rectangulo.png" alt="Rectangulo">
-            </div>
-            <div class="tool">
-                <img id="circle" src="imagenes/circulo.png" alt="Círculo">
-            </div>
-            <div class="tool">
-                <img id="line" src="imagenes/linea.png" alt="Línea">
-            </div>
-            <div class="tool">
-                <img id="polygon" src="imagenes/poligono.png" alt="Polígonos">
-            </div>
-            <div class="tool">
-                <img id="elipse" src="imagenes/elipse.png" alt="Elipse">
-            </div>
-            <div class="tool">
-                <img id="trapecio" src="imagenes/trapecio.png" alt="Trapecio">
-            </div>
-            <div class="tool">
-                <img id="move" src="imagenes/mover.png" alt="Mover">
-            </div>
-            <div class="tool">
-                <img id="rotation" src="imagenes/rotar.png" alt="Rotar">
-            </div>
-            <div class="tool">
-                <img id="resize" src="imagenes/escalar.png" alt="Escalar">
-            </div>
-            <div class="tool">
-                <img id="forward" src="imagenes/mover-arriba.png" alt="Hasta Arriba">
-            </div>
-            <div class="tool">
-                <img id="backward" src="imagenes/mover-abajo.png" alt="Hasta Abajo">
-            </div>
-            <div class="tool">
-
-                <img id="uplayer" src="img/subir.png" alt="Subir Un nivel">
-            </div>
-            <div class="tool">
-                <img id="downlayer" src="img/bajar.png" alt="Bajar Un nivel">
+            <!--Dibujo-->
+            <div class="content">
+                <div class="tool">
+                    <img id="pencil" src="imagenes/lapiz.png" alt="Lapicito">
+                </div>
+                <div class="tool">
+                    <img id="bucket" src="imagenes/rellenar.png" alt="Cubo de Pintura">
+                </div>
+                <div class="tool">
+                    <img id="pixelEraser" src="imagenes/borrador-pixel.png" alt="Borrar pixel">
+                </div>
+                <div class="tool">
+                    <img id="figureEraser" src="imagenes/borrar-figura.png" alt="Borrar Figura">
+                </div>
             </div>
 
-            <div class="colorTool">
-                <input type="color" id="colorPicker">
+            <!--Figuras-->
+            <div class="content">
+                <div class="tool">
+                    <img id="text" src="imagenes/texto.png" alt="Texto">
+                </div>
+                <div class="tool">
+                    <img id="line" src="imagenes/linea.png" alt="Línea">
+                </div>
+                <div class="tool">
+                    <img id="square" src="imagenes/cuadrado.png" alt="Cuadrado">
+                </div>
+                <div class="tool">
+                    <img id="rectangle" src="imagenes/rectangulo.png" alt="Rectangulo">
+                </div>
+                <div class="tool">
+                    <img id="trapecio" src="imagenes/trapecio.png" alt="Trapecio">
+                </div>
+                <div class="tool">
+                    <img id="circle" src="imagenes/circulo.png" alt="Círculo">
+                </div>
+                <div class="tool">
+                    <img id="elipse" src="imagenes/elipse.png" alt="Elipse">
+                </div>
+                <div class="tool">
+                    <img id="polygon" src="imagenes/poligono.png" alt="Polígonos">
+                </div>
             </div>
-            <div class="tool">
-              <img id="undo" src="imagenes/deshacer.png" alt="Deshacer">
-            </div>
-            <div class="tool">
-              <img id="redo" src="imagenes/rehacer.png" alt="Rehacer">
-            </div>
-            <div class="grosorTool">
-                <p>Grosor
+
+            <!--Modificaciones-->
+            <div class="content">
+                <div class="tool">
+                    <img id="move" src="imagenes/mover.png" alt="Mover">
+                </div>
+                <div class="tool">
+                    <img id="rotation" src="imagenes/rotar.png" alt="Rotar">
+                </div>
+                <div class="tool">
+                    <img id="resize" src="imagenes/escalar.png" alt="Escalar">
+                </div>
+                <div class="tool">
+                    <img id="forward" src="imagenes/mover-arriba.png" alt="Hasta Arriba">
+                </div>
+                <div class="tool">
+                    <img id="backward" src="imagenes/mover-abajo.png" alt="Hasta Abajo">
+                </div>
+                <div class="tool">
+                    <img id="uplayer" src="imagenes/Subir.png" alt="Subir Un nivel">
+                </div>
+                <div class="tool">
+                    <img id="downlayer" src="imagenes/Bajar.png" alt="Bajar Un nivel">
+                </div>
+                <div class="colorTool">
+                    <input type="color" id="colorPicker">
+                </div>
+                <div class="grosorTool">
                     <input id="grosor" class="range" type="range" min="1" max="10" value="1">
-                </p>    
+                </div>
             </div>
+
+            <div class="tool">
+                <img id="grid" src="imagenes/grid.png" alt="Grid">
+            </div>
+            
             <!-- <div class="canvasSelector">
                 <div class="canvasSelectorItem">
                     <input type="radio" name="canvasSelector" id="layer1" checked>
@@ -122,6 +144,6 @@
         </div>
     </div>
 
-    <script type="module" src="index.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>

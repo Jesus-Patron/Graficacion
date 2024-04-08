@@ -1,4 +1,4 @@
-import { Figura } from "./figuras";
+import { Figura } from "./figuras.js";
 
 class Elipse extends Figura {
   constructor(ctx, color, grosor, start, end) {

@@ -1,4 +1,4 @@
-import { CanvasManager } from "./canvasManager";
+import {CanvasManager} from './canvasManager.js';
 
 class HistoryManager {
   constructor() {
