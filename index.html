@@ -1,32 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/styles.css">
-  <title>Tu Página</title>
+    <meta charset="UTF-8">
+    <title>Paint++</title>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <div class="main-container">
-    <div class="controls-container">
-      <button id="draw-button">Dibujar</button>
-      <button id="basico-button">Linea (Metodo basico)</button>
-      <button id="bresenham-button">Linea (Bresenham)</button>
-      <button id="dda-button">Linea (DDA)</button>
-      <button id="cuadrado-button">Cuadrado</button>
-      <button id="circulo-button">Circulo</button>
-      <button id="erase-button">Borrar</button>
+    <div class="container">
+        <div class="header">
+        </div>  
+
+        <div class="toolbox">
+            <div class="tool">
+                <img id="open" src="imagenes/abrir.png" alt="Abrir un Dibujo">
+            </div>
+            <div class="tool">
+                <img id="save" src="imagenes/guardar.png" alt="Guardar el dibujo">
+            </div>
+            <div class="tool">
+                <img id="export" src="imagenes/exportar.png" alt="Exportar el Dibujo">
+            </div>
+            <div class="tool">
+                <img id="pencil" src="imagenes/lapiz.png" alt="Lapicito">
+            </div>
+
+            <div class="tool">
+                <img id="eraser" src="img/eraser.png" alt="Goma">
+            </div>
+
+            <div class="tool">
+                <img id="pixelEraser" src="imagenes/borrador-pixel.png" alt="Goma">
+            </div>
+            <div class="tool">
+                <img id="figureEraser" src="imagenes/borrar-figura.png" alt="Borrar Figura">
+            </div>
+            <div class="tool">
+                <img id="bucket" src="imagenes/rellenar.png" alt="Cubo de Pintura">
+            </div>
+            <div class="tool">
+                <img id="text" src="imagenes/texto.png" alt="Texto">
+            </div>
+            <div class="tool">
+                <img id="square" src="imagenes/cuadrado.png" alt="Cuadrado">
+            </div>
+            <div class="tool">
+                <img id="rectangle" src="imagenes/rectangulo.png" alt="Rectangulo">
+            </div>
+            <div class="tool">
+                <img id="circle" src="imagenes/circulo.png" alt="Círculo">
+            </div>
+            <div class="tool">
+                <img id="line" src="imagenes/linea.png" alt="Línea">
+            </div>
+            <div class="tool">
+                <img id="polygon" src="imagenes/poligono.png" alt="Polígonos">
+            </div>
+            <div class="tool">
+                <img id="elipse" src="imagenes/elipse.png" alt="Elipse">
+            </div>
+            <div class="tool">
+                <img id="trapecio" src="imagenes/trapecio.png" alt="Trapecio">
+            </div>
+            <div class="tool">
+                <img id="move" src="imagenes/mover.png" alt="Mover">
+            </div>
+            <div class="tool">
+                <img id="rotation" src="imagenes/rotar.png" alt="Rotar">
+            </div>
+            <div class="tool">
+                <img id="resize" src="imagenes/escalar.png" alt="Escalar">
+            </div>
+            <div class="tool">
+                <img id="forward" src="imagenes/mover-arriba.png" alt="Hasta Arriba">
+            </div>
+            <div class="tool">
+                <img id="backward" src="imagenes/mover-abajo.png" alt="Hasta Abajo">
+            </div>
+            <div class="tool">
+
+                <img id="uplayer" src="img/subir.png" alt="Subir Un nivel">
+            </div>
+            <div class="tool">
+                <img id="downlayer" src="img/bajar.png" alt="Bajar Un nivel">
+            </div>
+
+            <div class="colorTool">
+                <input type="color" id="colorPicker">
+            </div>
+            <div class="tool">
+              <img id="undo" src="imagenes/deshacer.png" alt="Deshacer">
+            </div>
+            <div class="tool">
+              <img id="redo" src="imagenes/rehacer.png" alt="Rehacer">
+            </div>
+            <div class="grosorTool">
+                <p>Grosor
+                    <input id="grosor" class="range" type="range" min="1" max="10" value="1">
+                </p>    
+            </div>
+            <!-- <div class="canvasSelector">
+                <div class="canvasSelectorItem">
+                    <input type="radio" name="canvasSelector" id="layer1" checked>
+                    <label for="layer1">Capa 1</label>
+                </div>
+                <div class="canvasSelectorItem">
+                    <input type="radio" name="canvasSelector" id="layer2">
+                    <label for="layer2">Capa 2</label>
+                </div>
+              <div class="canvasSelectorItem">
+                    <input type="radio" name="canvasSelector" id="layer3">
+                    <label for="layer3">Capa 3</label>
+                </div>
+            </div>  -->
+        </div>
+
+        <div class="canvas-container">
+            <!-- <canvas id="gridCanvas" class="canvas"></canvas> -->
+            <canvas id="layer1Canvas" class="canvas"></canvas>
+            <canvas id="layer2Canvas" class="canvas"></canvas>
+            <!-- <canvas id="layer3Canvas" class="canvas"></canvas> -->
+        </div>
     </div>
-    <div class="controls-container">
-      <label for="line-width">Grosor de línea:</label>
-      <input type="range" id="line-width" min="1" max="10" value="5">
-      <label for="color-picker">Color de línea:</label>
-      <input type="color" id="color-picker" value="#000000">
-    </div>
-    <div class="canvas-container">
-      <canvas id="main-canvas" width="1100" height="530"></canvas>
-    </div>
-  </div>
-  <script src="assets/index.js"></script>
+
+    <script type="module" src="index.js"></script>
 </body>
 </html>
